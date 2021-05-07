@@ -1,0 +1,14 @@
+.login {
+    .image-login {
+        background-color: #0d0835;
+        .bottom-button-wrapper {
+            bottom: 35px;
+        }
+    }
+
+    .form-login {
+        width: 300px;
+    }
+}
+
+@import './responsive.scss';

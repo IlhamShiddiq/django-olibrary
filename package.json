@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "serve": "python manage.py runserver",
-    "load:scss": "python manage.py sass-compiler --style=compressed --no-build --watch"
+    "load:scss": "python manage.py sass-compiler --style=compressed --no-build --watch",
+    "makemigration": "python manage.py makemigrations",
+    "migrate": "python manage.py migrate",
+    "superuser": "python manage.py createsuperuser"
   },
   "keywords": [],
   "author": "",

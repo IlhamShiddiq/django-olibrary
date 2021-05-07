@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_sass_compiler',
     'landing_page',
+    'auth_user',
+    'admin_user',
 ]
 
 MIDDLEWARE = [
@@ -66,8 +68,15 @@ WSGI_APPLICATION = 'django_olibrary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django-olibrary',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
@@ -117,4 +126,9 @@ STATICFILES_DIRS = [
 SASS_COMPILER_IGNORE = [
    'app/scss/landing_page/*',
    'app/scss/utils/*',
+   'app/scss/auth/*',
 ]
+
+LOGIN_REDIRECT_URL = 'dashboard'
+
+LOGIN_URL = 'login'
