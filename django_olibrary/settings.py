@@ -113,3 +113,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+SASS_COMPILER_IGNORE = [
+   'app/scss/landing_page/*',
+   'app/scss/utils/*',
+]

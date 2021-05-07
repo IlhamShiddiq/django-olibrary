@@ -1,0 +1,61 @@
+.landing-page {
+    .section-landing-page {
+        min-height: 768px;
+    }
+    .section-1 {
+        background-color: #0d0835;
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .landing-page-title {
+            h1 {
+                font-size: 45px;
+            }
+            p {
+                font-size: 17px;
+            }
+        }
+        .btn-landing-page {
+            color: black;
+            background-color: white;
+            &:hover {
+                background-color: #28205f !important;
+                color: white;
+            }
+        }
+    }
+    .section-2 {
+        background-color: white;
+        .section-2-title {
+            margin-top: -130px;
+            h1 {
+                font-size: 34px;
+            }
+            .section-2-card {
+                .stemple-card {
+                    top: -15px;
+                    right: -10px;
+                    width: 35px;
+                    height: 35px;
+                }
+                .stemple-card-1 {
+                    background-color: rgb(104, 219, 113);
+                }
+                .stemple-card-2 {
+                    background-color: rgb(104, 150, 219);
+                }
+                .stemple-card-3 {
+                    background-color: rgb(219, 160, 104);
+                }
+                .icon {
+                    font-size: 70px;
+                }
+            }
+        }
+    }
+    footer {
+        background-color: #0d0835;
+    }
+}
+
+@import './responsive.scss';

@@ -1,25 +1,80 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Welcome
 {% endblock title %}
 
 {% block content %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Pricing</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    <div class="landing-page">
+        <div class="section-landing-page section-1 full-width">
+            <nav class="navbar navbar-expand-lg navbar-dark shadow py-3 px-4">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="{% url 'landing-page' %}">django-olibrary</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                      <a class="nav-link mx-2" href="#">Home</a>
+                      <a class="nav-link mx-2" href="#section-2">What can you do?</a>
+                      <a href="#" class="btn btn-landing-page rounded-pill px-4 mx-2">I'M AN ADMIN</a>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+            <div class="landing-page-title full-width text-center p-5">
+                <h1 class="text-white mt-2 mb-3">DJANGO-OLIBRARY</h1>
+                <p class="text-white mb-5">A web application for managing Library datas, like book, publisher, category, etc. Built with Django and Bootstrap.</p>
+                <div class="img-landing-page text-center my-4">
+                    <img src="{% static 'app/img/book.png' %}" class="img-fluid">
+                </div>
+                <a href="#section-2" class="btn btn-landing-page rounded-pill px-5 mx-2"><i class="fas fa-chevron-down"></i> EXPLORE</a>
             </div>
         </div>
+        <div class="section-landing-page section-2 full-width position-relative" id="section-2">
+            <svg class=" top-absolute full-width" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0d0835" fill-opacity="1" d="M0,128L1440,96L1440,0L0,0Z"></path></svg>
+
+            <div class="section-2-title text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12"><h1 class="mb-5">WHAT CAN YOU DO?</h1></div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-4 col-lg-3 px-3 py-4">
+                            <div class="section-2-card full-width shadow p-2 position-relative">
+                                <div class="stemple-card stemple-card-1 position-absolute rounded-circle"></div>
+                                <div class="icon mb-3"><i class="fas fa-book"></i></div>
+                                <h6>See all books</h6>
+                                <p>You can access the page to see all books that is stored in library. You can check more information about that book.</p>
+                                <span class="badge rounded-pill bg-success mb-4">All guests</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3 px-3 py-4">
+                            <div class="section-2-card full-width shadow p-2 position-relative">
+                                <div class="stemple-card stemple-card-2 position-absolute rounded-circle"></div>
+                                <div class="icon mb-3"><i class="fas fa-tasks"></i></div>
+                                <h6>Manage all book datas</h6>
+                                <p>For admin only. You can manage all datas, ex. add, update even delete. Also you have access to manage all transaction datas.</p>
+                                <span class="badge rounded-pill bg-success mb-4">Admin</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3 px-3 py-4">
+                            <div class="section-2-card full-width shadow p-2 position-relative">
+                                <div class="stemple-card stemple-card-3 position-absolute rounded-circle"></div>
+                                <div class="icon mb-3"><i class="far fa-sticky-note"></i></div>
+                                <h6>Print the report</h6>
+                                <p>For admin only. You can print the library report into any files like PDF and Excel. It helps you to make monthly report.</p>
+                                <span class="badge rounded-pill bg-success mb-4">Admin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
+        <footer class="p-3 text-center text-white">
+            django-olibrary &copy; 2020
+        </footer>
+    </div>
 {% endblock content %}
         
