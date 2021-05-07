@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "python manage.py runserver"
+    "serve": "python manage.py runserver",
+    "load:scss": "python manage.py sass-compiler --style=compressed --no-build --watch"
   },
   "keywords": [],
   "author": "",
