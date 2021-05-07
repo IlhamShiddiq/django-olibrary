@@ -12,6 +12,8 @@
         {% endblock title %}
             
     </title>
+    <link rel="stylesheet" href="{% static 'app/css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 
     {% block more-css %}
         
@@ -24,6 +26,9 @@
         
     {% endblock content %}
     
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     {% block more-js %}
         
     {% endblock more-js %}
