@@ -1,0 +1,39 @@
+.admin-page-nav {
+    nav {
+        background-color: #0d0835;
+    }
+}
+
+.sidebar-panel {
+    width: 70px;
+    height: 100%;
+    background-color: #0d0835;
+    .photo-profile {
+        height: 40px;
+        .photo {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+        }
+    }
+    .sidebar-item {
+        a, button {
+            background-color: #26214d;
+            width: 60px;
+            height: 50px;
+            font-size: 20px;
+            color: white;
+            &:hover {
+                background-color: #b0a8ee;
+                color: black;
+            }
+        }
+    }
+    .sidebar-line {
+        border-bottom: 1px white solid;
+    }
+}
+
+.content-admin {
+    padding-left: 70px;
+}

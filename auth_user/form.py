@@ -6,6 +6,6 @@ class UserLoginForm(AuthenticationForm):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Input here', 'autocomplete': 'off'}))
+        attrs={'class': 'form-control', 'placeholder': 'Input here', 'autocomplete': 'off', 'autofocus': True}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Input here'}))

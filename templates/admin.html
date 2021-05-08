@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        
+        {% block title %}
+            
+        {% endblock title %}
+            
+    </title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'app/img/favicon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'app/css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+    {% block more-css %}
+        
+    {% endblock more-css %}
+        
+</head>
+<body>
+
+    <div class="admin-page-nav">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow py-3 px-4">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'landing-page' %}">django-olibrary</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="admin-page position-relative">
+        <div class="sidebar-panel position-fixed px-2 pb-2">
+            <div class="photo-profile mb-2 text-center position-relative">
+                <div class="center-ver-hor position-absolute"><div class="photo rounded-circle"></div></div>
+            </div>
+            <div class="sidebar-line pb-1 my-2"></div>
+            <div class="sidebar-item text-center my-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="DASHBOARD">
+                    <a href="{% url 'dashboard' %}" class="btn decoration-none full-width position-relative">
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-home"></i></div>
+                    </a>
+                </span>
+            </div>
+            <div class="sidebar-item text-center mb-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="BOOK DATAS">
+                    <a href="{% url 'book' %}" class="btn decoration-none full-width position-relative">
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-book"></i></div>
+                    </a>
+                </span>
+            </div>
+            <div class="sidebar-item text-center mb-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="PUBLISHER DATAS">
+                    <a href="{% url 'publisher' %}" class="btn decoration-none full-width position-relative">
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-upload"></i></div>
+                    </a>
+                </span>
+            </div>
+            <div class="sidebar-item text-center mb-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="CATEGORY DATAS">
+                    <a href="{% url 'category' %}" class="btn decoration-none full-width position-relative">
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-bookmark"></i></div>
+                    </a>
+                </span>
+            </div>
+            <div class="sidebar-item text-center mb-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="TRANSACTION">
+                    <a href="{% url 'transaction' %}" class="btn decoration-none full-width position-relative">
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-exchange-alt"></i></div>
+                    </a>
+                </span>
+            </div>
+            <div class="sidebar-item text-center mb-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="REPORT">
+                    <a href="{% url 'report' %}" class="btn decoration-none full-width position-relative">
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-clipboard"></i></div>
+                    </a>
+                </span>
+            </div>
+            <div class="sidebar-line pb-1 my-2"></div>
+            <div class="sidebar-item text-center mb-2">
+                <span class="d-inline-block full-width" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="LOGOUT">
+                    <button type="button" class="btn decoration-none full-width position-relative" data-bs-toggle='modal' data-bs-target='#logout'>
+                        <div class="center-ver-hor position-absolute"><i class="fas fa-sign-out-alt"></i></i></div>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-admin">
+        {% block content %}
+        
+        {% endblock content %}
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to exit?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <a href="{% url 'logout' %}" class="btn btn-danger">Yes</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/c322b99201.js" crossorigin="anonymous"></script>
+    <script>
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+    </script>
+    {% block more-js %}
+        
+    {% endblock more-js %}
+        
+</body>
+</html>

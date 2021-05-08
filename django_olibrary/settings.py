@@ -127,6 +127,7 @@ SASS_COMPILER_IGNORE = [
    'app/scss/landing_page/*',
    'app/scss/utils/*',
    'app/scss/auth/*',
+   'app/scss/admin/*',
 ]
 
 LOGIN_REDIRECT_URL = 'dashboard'
