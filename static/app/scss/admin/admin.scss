@@ -1,6 +1,7 @@
 .admin-page-nav {
     nav {
         background-color: #0d0835;
+        z-index: 99;
     }
 }
 
@@ -8,6 +9,8 @@
     width: 70px;
     height: 100%;
     background-color: #0d0835;
+    margin-top: 70px;
+    padding-top: 15px;
     .photo-profile {
         height: 40px;
         .photo {
@@ -36,6 +39,7 @@
 
 .content-admin {
     padding-left: 70px;
+    padding-top: 75px;
     .dashboard {
         .greeting-dashboard {
             background-color: rgb(240, 240, 240);
@@ -76,5 +80,8 @@
             border-radius: 15px;
             height: 275px;
         }
+    }
+    footer {
+        background-color: #8278d3;
     }
 }
