@@ -8,19 +8,27 @@ def dashboard(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 def book(request):
-    return render(request, 'book-datas.html')
+    return render(request, 'book/book-datas.html')
 
 @login_required(login_url=settings.LOGIN_URL)
 def member(request):
-    return render(request, 'member.html')
+    return render(request, 'member/member.html')
 
 @login_required(login_url=settings.LOGIN_URL)
 def publisher(request):
-    return render(request, 'publisher.html')
+    return render(request, 'publisher/publisher.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def add_publisher(request):
+    return render(request, 'publisher/add-publisher.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def edit_publisher(request):
+    return render(request, 'publisher/edit-publisher.html')
 
 @login_required(login_url=settings.LOGIN_URL)
 def category(request):
-    return render(request, 'category.html')
+    return render(request, 'category/category.html')
 
 @login_required(login_url=settings.LOGIN_URL)
 def transaction(request):

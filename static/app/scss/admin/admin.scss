@@ -38,6 +38,19 @@
     }
 }
 
+.breadcrumb-page {
+    background-color: rgb(231, 228, 255);
+}
+
+.amount-info {
+    background-color: #8278d3;
+    border-radius: 15px;
+    height: 200px;
+    i {
+        font-size: 40px;
+    }
+}
+
 .content-admin {
     padding-left: 70px;
     padding-top: 75px;
@@ -56,14 +69,6 @@
             img {
                 bottom: 10px;
                 right: 10px;
-            }
-        }
-        .amount-info {
-            background-color: #8278d3;
-            border-radius: 15px;
-            height: 200px;
-            i {
-                font-size: 40px;
             }
         }
         .publisher-graphic {
@@ -85,4 +90,8 @@
     footer {
         background-color: #8278d3;
     }
+}
+
+.sub-content {
+    min-height: 67vh;
 }

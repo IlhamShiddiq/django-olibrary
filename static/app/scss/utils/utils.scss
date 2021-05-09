@@ -31,3 +31,10 @@ body {
 .decoration-none {
     text-decoration: none;
 }
+
+.btn-olibrary {
+    background-color: #28205f !important;
+    &:hover {
+        background-color: #4e4586 !important;
+    }
+}
