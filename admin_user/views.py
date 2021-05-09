@@ -31,6 +31,14 @@ def category(request):
     return render(request, 'category/category.html')
 
 @login_required(login_url=settings.LOGIN_URL)
+def add_category(request):
+    return render(request, 'category/add-category.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def edit_category(request):
+    return render(request, 'category/edit-category.html')
+
+@login_required(login_url=settings.LOGIN_URL)
 def transaction(request):
     return render(request, 'transaction.html')
 

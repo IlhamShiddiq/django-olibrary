@@ -20,6 +20,8 @@ urlpatterns = [
     path('publisher/add/', add_publisher, name="add_publisher"),
     path('publisher/edit/', edit_publisher, name="edit_publisher"),
     path('category/', category, name="category"),
+    path('category/add/', add_category, name="add_category"),
+    path('category/edit/', edit_category, name="edit_category"),
     path('transaction/', transaction, name="transaction"),
     path('report/', report, name="report"),
 ]
