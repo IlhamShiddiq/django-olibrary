@@ -15,6 +15,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('dashboard/', dashboard, name="dashboard"),
     path('book/', book, name="book"),
+    path('member/', member, name="member"),
     path('publisher/', publisher, name="publisher"),
     path('category/', category, name="category"),
     path('transaction/', transaction, name="transaction"),

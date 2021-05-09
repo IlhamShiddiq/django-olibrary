@@ -11,6 +11,10 @@ def book(request):
     return render(request, 'book-datas.html')
 
 @login_required(login_url=settings.LOGIN_URL)
+def member(request):
+    return render(request, 'member.html')
+
+@login_required(login_url=settings.LOGIN_URL)
 def publisher(request):
     return render(request, 'publisher.html')
 
