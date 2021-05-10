@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from landing_page.views import *
 from django.contrib.auth.views import LoginView, LogoutView
 from auth_user.form import UserLoginForm
 from admin_user.views import *
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,6 +20,9 @@ urlpatterns = [
     path('book/edit/', edit_book, name="edit_book"),
     path('book/detail/', detail_book, name="detail_book"),
     path('member/', member, name="member"),
+    path('member/add/', add_member, name="add_member"),
+    path('member/edit/', edit_member, name="edit_member"),
+    path('member/detail/', detail_member, name="detail_member"),
     path('publisher/', publisher, name="publisher"),
     path('publisher/add/', add_publisher, name="add_publisher"),
     path('publisher/edit/', edit_publisher, name="edit_publisher"),

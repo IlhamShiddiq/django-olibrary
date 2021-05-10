@@ -94,10 +94,10 @@
 
 .sub-content {
     min-height: 67vh;
-    .book-item {
+    .book-item, .member-item {
         border-radius: 10px;
         height: 150px;
-        .book-image {
+        .book-image, .member-image {
             top: 5px;
             left: 5px;
             width: 140px;
@@ -112,7 +112,7 @@
                 border-bottom-left-radius: 10px;
             }
         }
-        .book-data {
+        .book-data, .member-data {
             padding-left: 140px;
             h1 {
                 font-size: 22px;

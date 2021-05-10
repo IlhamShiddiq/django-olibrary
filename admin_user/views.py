@@ -27,6 +27,18 @@ def member(request):
     return render(request, 'member/member.html')
 
 @login_required(login_url=settings.LOGIN_URL)
+def add_member(request):
+    return render(request, 'member/add-member.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def edit_member(request):
+    return render(request, 'member/edit-member.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def detail_member(request):
+    return render(request, 'member/detail-member.html')
+
+@login_required(login_url=settings.LOGIN_URL)
 def publisher(request):
     return render(request, 'publisher/publisher.html')
 

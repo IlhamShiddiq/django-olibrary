@@ -1,0 +1,74 @@
+{% extends 'admin.html' %}
+{% load static %}
+
+{% block title %}
+    Add Member Data
+{% endblock title %}
+
+{% block content %}
+    <div class="member">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-2">
+                                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'member' %}" class="decoration-none">Member</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4">
+                    <div class="amount-info p-3 mb-3">
+                        <div class="row">
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Book</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                                <small>Publisher</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Category</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="sub-content p-3">
+                        <h5 class="mb-3">Add Member Data</h5>
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea class="form-control" id="address" rows="3" name="address" placeholder="Input here ..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary full-width">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

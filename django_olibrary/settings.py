@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_sass_compiler',
+    'initial_avatars',
+    'django_gravatar',
     'landing_page',
     'auth_user',
     'admin_user',
