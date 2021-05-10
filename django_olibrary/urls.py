@@ -4,6 +4,7 @@ from landing_page.views import *
 from django.contrib.auth.views import LoginView, LogoutView
 from auth_user.form import UserLoginForm
 from admin_user.views import *
+from transaction.views import *
 from django.conf.urls.static import static
 
 urlpatterns = [

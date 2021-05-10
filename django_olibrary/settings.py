@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'landing_page',
     'auth_user',
     'admin_user',
+    'transaction',
 ]
 
 MIDDLEWARE = [

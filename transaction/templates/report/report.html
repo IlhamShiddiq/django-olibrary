@@ -1,0 +1,73 @@
+{% extends 'admin.html' %}
+
+{% block title %}
+    Report
+{% endblock title %}
+
+{% block content %}
+<div class="report">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb pt-2">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Report</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="amount-info p-3 mb-3">
+                    <div class="row">
+                        <div class="col-4 text-center text-white mt-4">
+                            <small>Book</small>
+                            <h1 class="mb-3">78</h1>
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                            <small>Publisher</small>
+                            <h1 class="mb-3">78</h1>
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="col-4 text-center text-white mt-4">
+                            <small>Category</small>
+                            <h1 class="mb-3">78</h1>
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 pe-1"><button class="btn btn-dark full-width">Print the report <i class="fas fa-arrow-right"></i> </button></div>
+                    <div class="col-2 pe-1"><a href="#" class="btn btn-success full-width"><i class="fas fa-file-excel"></i></a></div>
+                    <div class="col-2 ps-1"><a href="#" class="btn btn-danger full-width"><i class="fas fa-file-pdf"></i></a></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-8">
+                <div class="sub-content">
+                    <div class="report-items">
+                        <div class="report-item position-relative shadow p-3 mb-3">
+                            <div class="report-data">
+                                <h1>ILHAM SHIDDIQ</h1>
+                                <p>Title : This is title of the book</p>
+                                <span class="badge bg-primary rounded-pill">Return of date : 2020-01-01</span>
+                                <span class="badge bg-success rounded-pill">On time : yes</span>
+                            </div>
+                        </div>
+                        <div class="report-item position-relative shadow p-3 mb-3">
+                            <div class="report-data">
+                                <h1>ILHAM SHIDDIQ</h1>
+                                <p>Title : This is title of the book</p>
+                                <span class="badge bg-primary rounded-pill">Return of date : 2020-01-01</span>
+                                <span class="badge bg-danger rounded-pill">On time : no</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    
