@@ -48,19 +48,19 @@
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Input here ...">
+                                    {{ form.name }}
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Input here ...">
+                                    {{ form.email }}
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Input here ...">
+                                    {{ form.phone }}
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="address" class="form-label">Address</label>
-                                    <textarea class="form-control" id="address" rows="3" name="address" placeholder="Input here ..."></textarea>
+                                    {{ form.address }}
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary full-width">Submit</button>
