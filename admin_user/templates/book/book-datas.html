@@ -1,10 +1,147 @@
 {% extends 'admin.html' %}
+{% load static %}
 
 {% block title %}
     Books
 {% endblock title %}
 
 {% block content %}
-    Books
+    <div class="book">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-2">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Book</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4">
+                    <div class="amount-info p-3 mb-3">
+                        <div class="row">
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Book</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                                <small>Publisher</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Category</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'add_book' %}" class="btn btn-olibrary text-white full-width rounded-pill mb-3">Add Data</a>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="sub-content">
+                        <div class="book-items">
+                            <div class="book-item position-relative shadow p-3 mb-3">
+                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                <div class="book-data">
+                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
+                                    <small>ISBN Code : 90901909019091</small>
+                                    <div class="book-button mt-2">
+                                        <a href="{% url 'edit_book' %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="fas fa-trash"></i></button>
+                                        <a href="{% url 'detail_book' %}" class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-item position-relative shadow p-3 mb-3">
+                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                <div class="book-data">
+                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
+                                    <small>ISBN Code : 90901909019091</small>
+                                    <div class="book-button mt-2">
+                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-item position-relative shadow p-3 mb-3">
+                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                <div class="book-data">
+                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
+                                    <small>ISBN Code : 90901909019091</small>
+                                    <div class="book-button mt-2">
+                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-item position-relative shadow p-3 mb-3">
+                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                <div class="book-data">
+                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="not-available">(Out of Stock)</span></h1>
+                                    <small>ISBN Code : 90901909019091</small>
+                                    <div class="book-button mt-2">
+                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-item position-relative shadow p-3 mb-3">
+                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                <div class="book-data">
+                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="not-available">(Out of Stock)</span></h1>
+                                    <small>ISBN Code : 90901909019091</small>
+                                    <div class="book-button mt-2">
+                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-item position-relative shadow p-3 mb-3">
+                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                <div class="book-data">
+                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
+                                    <small>ISBN Code : 90901909019091</small>
+                                    <div class="book-button mt-2">
+                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to delete this data?
+            </div>
+            <div class="modal-footer">
+                <form action="" method="post">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button type="submit">
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
     

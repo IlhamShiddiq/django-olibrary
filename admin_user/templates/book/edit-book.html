@@ -1,0 +1,94 @@
+{% extends 'admin.html' %}
+{% load static %}
+
+{% block title %}
+    Edit Book Data
+{% endblock title %}
+
+{% block content %}
+    <div class="book">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-2">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'book' %}" class="decoration-none">Book</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4">
+                    <div class="amount-info p-3 mb-3">
+                        <div class="row">
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Book</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                                <small>Publisher</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Category</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="sub-content p-3">
+                        <h5 class="mb-3">Edit Book Data</h5>
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="title" class="form-label">Title of the book</label>
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                    <label for="year" class="form-label">Publish year</label>
+                                    <input type="number" class="form-control" id="year" name="year" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                    <label for="stock" class="form-label">Stock</label>
+                                    <input type="number" class="form-control" id="stock" name="stock" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="writer" class="form-label">Writer</label>
+                                    <input type="text" class="form-control" id="writer" name="writer" placeholder="Input here ...">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                    <label class="mb-2">Publisher</label>
+                                    <select class="form-select" name="publisher">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                                    <label class="mb-2">Category</label>
+                                    <select class="form-select" name="category">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="synopsis" class="form-label">Synopsis</label>
+                                    <textarea class="form-control" id="synopsis" rows="3" name="synopsis" placeholder="Input here ..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success full-width">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

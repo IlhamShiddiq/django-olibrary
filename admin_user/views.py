@@ -11,6 +11,18 @@ def book(request):
     return render(request, 'book/book-datas.html')
 
 @login_required(login_url=settings.LOGIN_URL)
+def add_book(request):
+    return render(request, 'book/add-book.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def edit_book(request):
+    return render(request, 'book/edit-book.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def detail_book(request):
+    return render(request, 'book/detail-book.html')
+
+@login_required(login_url=settings.LOGIN_URL)
 def member(request):
     return render(request, 'member/member.html')
 
