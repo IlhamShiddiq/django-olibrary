@@ -31,5 +31,7 @@ urlpatterns = [
     path('category/add/', add_category, name="add_category"),
     path('category/edit/', edit_category, name="edit_category"),
     path('transaction/', transaction, name="transaction"),
+    path('transaction/add/', add_transaction, name="add_transaction"),
+    path('transaction/return/', returning, name="returning"),
     path('report/', report, name="report"),
 ]

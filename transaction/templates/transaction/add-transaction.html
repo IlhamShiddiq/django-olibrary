@@ -1,0 +1,98 @@
+{% extends 'admin.html' %}
+
+{% block title %}
+    Add Transaction
+{% endblock title %}
+
+{% block content %}
+    <div class="transaction">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-2">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'transaction' %}" class="decoration-none">Transaction</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4">
+                    <div class="amount-info p-3 mb-3">
+                        <div class="row">
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Book</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                                <small>Publisher</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Category</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <label>Name of member</label>
+                    <input type="text" readonly placeholder="Name" class="form-control">
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="sub-content">
+                        <div class="row">
+                            <div class="col-6 pt-2">
+                                <form action="" method="post">
+                                    <div class="row">
+                                        <div class="col-10 pe-1 mb-3">
+                                            <input type="text" name="id" placeholder="Input ISBN Code here" class="form-control">
+                                        </div>
+                                        <div class="col-2 ps-1 mb-3">
+                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label>Title of the book</label>
+                                            <input type="text" class="form-control" readonly placeholder="The title will dipslay here">
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <button type="submit" class="btn btn-primary full-width">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-light">This member only available to borrow 2 books</button>
+                            </div>
+                            <div class="col-12">
+                                <div class="book-table rounded p-3">
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <td>Image</td>
+                                                <td>Title</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <form action="" method="post" class="mt-2">
+                                    <button type="submit" class="btn btn-success full-width">Add Data</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

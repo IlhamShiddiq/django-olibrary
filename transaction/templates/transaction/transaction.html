@@ -5,6 +5,85 @@
 {% endblock title %}
 
 {% block content %}
-    Transaction
+    <div class="transaction">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-2">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Transaction</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4">
+                    <div class="amount-info p-3 mb-3">
+                        <div class="row">
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Book</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                                <small>Publisher</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Category</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-olibrary text-white full-width rounded-pill mb-3" data-bs-toggle="modal" data-bs-target="#member">Add Data</button>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="sub-content">
+                        <div class="transaction-items">
+                            <div class="transaction-item position-relative shadow p-3 mb-3">
+                                <div class="transaction-data">
+                                    <h1>ILHAM SHIDDIQ</h1>
+                                    <p>Title : This is title of the book</p>
+                                    <a href="{% url 'returning' %}" class="btn btn-primary btn-sm"><i class="fas fa-exchange-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Modal -->
+    <div class="modal fade" id="member" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Please Input</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="row justify-content-center">
+                        <div class="col-12 mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Please input the member's email">
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary full-width" data-bs-dismiss="modal">No</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-danger full-width">Yes</button type="submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
     

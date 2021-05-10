@@ -1,0 +1,76 @@
+{% extends 'admin.html' %}
+
+{% block title %}
+    Returning
+{% endblock title %}
+
+{% block content %}
+    <div class="transaction">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-page rounded-pill px-5 pt-2 pb-1 mb-3">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-2">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'transaction' %}" class="decoration-none">Transaction</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Returning</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4">
+                    <div class="amount-info p-3 mb-3">
+                        <div class="row">
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Book</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
+                                <small>Publisher</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="col-4 text-center text-white mt-4">
+                                <small>Category</small>
+                                <h1 class="mb-3">78</h1>
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <label>Name of member</label>
+                    <input type="text" readonly placeholder="Name" class="form-control">
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="sub-content">
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="book">
+                                        <label class="form-check-label">
+                                            Title of the book
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" name="book2">
+                                        <label class="form-check-label">
+                                            Title of the book 2
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary full-width">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

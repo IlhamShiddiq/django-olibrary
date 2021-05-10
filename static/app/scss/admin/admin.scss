@@ -133,12 +133,15 @@
             }
         }
     }
-    .report-item {
+    .report-item, .transaction-item {
         border-top-right-radius: 30px;
-        .report-data {
+        .report-data, .transaction-data {
             h1 {
                 font-size: 22px;
             }
         }
+    }
+    .book-table {
+        background-color: rgb(238, 238, 238);
     }
 }
