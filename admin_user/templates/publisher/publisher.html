@@ -108,18 +108,17 @@
     </div>
 {% endblock content %}
     
-
 {% block more-js %}
     <script>
         var modal = document.getElementById('delete')
         modal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget
-        var book_id = button.getAttribute('data-bs-id')
+        var publisher_id = button.getAttribute('data-bs-id')
 
         modal.querySelector('.form').innerHTML = `
                 <form action="{% url 'delete_publisher' %}" method="post">
                     {% csrf_token %}
-                    <input type="hidden" name="id" value="${book_id}">
+                    <input type="hidden" name="id" value="${publisher_id}">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <button type="submit" class="btn btn-danger">Yes</button type="submit">
                 </form>`

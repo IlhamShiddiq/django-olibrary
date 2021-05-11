@@ -167,10 +167,26 @@ def delete_publisher(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 def category(request):
-    return render(request, 'category/category.html')
+    category = categories.objects.all()
+
+    datas = {
+        'categories': category
+    }
+
+    return render(request, 'category/category.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
 def add_category(request):
+    if request.POST:
+        data = FormCategory(request.POST)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'Data has added successfully')
+            return redirect('category')
+
+        messages.error(request, 'Failed to add data')
+        return redirect('category')
+
     datas = {
         'form': FormCategory(),
     }
@@ -178,9 +194,32 @@ def add_category(request):
     return render(request, 'category/add-category.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
-def edit_category(request):
+def edit_category(request, category_id):
+    category = categories.objects.get(id=category_id)
+    if request.POST:
+        data = FormCategory(request.POST, instance=category)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'Data has updated successfully')
+            return redirect('category')
+
+        messages.error(request, 'Failed to update data')
+        return redirect('category')
+
     datas = {
-        'form': FormCategory
+        'form': FormCategory(instance=category),
+        'category': category
     }
 
     return render(request, 'category/edit-category.html', datas)
+
+@login_required(login_url=settings.LOGIN_URL)
+def delete_category(request):
+    if request.POST:
+        id = request.POST.get('id')
+        category = categories.objects.get(id=id)
+
+        delete = categories.objects.filter(id=id).delete()
+
+        messages.success(request, 'Data has deleted successfully')
+        return redirect('category')
