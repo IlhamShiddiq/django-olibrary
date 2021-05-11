@@ -45,7 +45,7 @@ def edit_book(request, book_id):
         data = FormBook(request.POST, instance=book)
         if data.is_valid():
             data.save()
-            messages.success(request, 'Data has edited successfully')
+            messages.success(request, 'Data has updated successfully')
             return redirect('book')
 
         messages.error(request, 'Failed to edit data')
@@ -107,10 +107,26 @@ def detail_member(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 def publisher(request):
-    return render(request, 'publisher/publisher.html')
+    publisher_lists = publishers.objects.all()
+
+    datas = {
+        'publishers': publisher_lists
+    }
+
+    return render(request, 'publisher/publisher.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
 def add_publisher(request):
+    if request.POST:
+        data = FormPublisher(request.POST)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'Data has added successfully')
+            return redirect('publisher')
+
+        messages.error(request, 'Failed to add data')
+        return redirect('publisher')
+        
     datas = {
         'form': FormPublisher(),
     }
@@ -118,11 +134,36 @@ def add_publisher(request):
     return render(request, 'publisher/add-publisher.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
-def edit_publisher(request):
+def edit_publisher(request, publisher_id):
+    publisher = publishers.objects.get(id=publisher_id)
+
+    if request.POST:
+        data = FormPublisher(request.POST, instance=publisher)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'Data has updated successfully')
+            return redirect('publisher')
+
+        messages.error(request, 'Failed to update data')
+        return redirect('publisher')
+
     datas = {
-        'form': FormPublisher(),
+        'form': FormPublisher(instance=publisher),
+        'publisher': publisher
     }
+
     return render(request, 'publisher/edit-publisher.html', datas)
+
+@login_required(login_url=settings.LOGIN_URL)
+def delete_publisher(request):
+    if request.POST:
+        id = request.POST.get('id')
+        publisher = publishers.objects.get(id=id)
+
+        delete = publishers.objects.filter(id=id).delete()
+
+        messages.success(request, 'Data has deleted successfully')
+        return redirect('publisher')
 
 @login_required(login_url=settings.LOGIN_URL)
 def category(request):

@@ -42,6 +42,24 @@
                 </div>
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="sub-content p-3">
+
+                        {% if messages %}
+                                
+                            {% for message in messages %}
+                                {% if message.tags == 'success' %}
+                                    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#check-circle-fill"/></svg>
+                                {% elif message.tags == 'error' %}
+                                    <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                {% endif %}
+                                    <div>{{ message }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                                
+                        {% endif %}
+
                         <table class="table table-responsive table-hover">
                             <thead class="table-dark">
                                 <tr>
@@ -51,59 +69,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">
-                                        <a href="{% url 'edit_publisher' %}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3">1</td>
-                                    <td class="py-3">This is publisher</td>
-                                    <td class="py-3">l</td>
-                                </tr>
+                                
+                                {% for publisher in publishers %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ publisher.publisher }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_publisher' publisher.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-id={{ publisher.id }}><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -124,13 +101,28 @@
                 Are you sure want to delete this data?
             </div>
             <div class="modal-footer">
-                <form action="" method="post">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-danger">Yes</button type="submit">
-                </form>
+                <div class="form"></div>
             </div>
             </div>
         </div>
     </div>
 {% endblock content %}
     
+
+{% block more-js %}
+    <script>
+        var modal = document.getElementById('delete')
+        modal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var book_id = button.getAttribute('data-bs-id')
+
+        modal.querySelector('.form').innerHTML = `
+                <form action="{% url 'delete_publisher' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="${book_id}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button type="submit">
+                </form>`
+        })
+    </script>
+{% endblock more-js %}
