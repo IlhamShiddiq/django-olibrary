@@ -44,78 +44,48 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="sub-content">
                         <div class="book-items">
-                            <div class="book-item position-relative shadow p-3 mb-3">
-                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
-                                <div class="book-data">
-                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
-                                    <small>ISBN Code : 90901909019091</small>
-                                    <div class="book-button mt-2">
-                                        <a href="{% url 'edit_book' %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="fas fa-trash"></i></button>
-                                        <a href="{% url 'detail_book' %}" class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></a>
+                            
+                            {% if messages %}
+                                
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                            <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#check-circle-fill"/></svg>
+                                    {% elif message.tags == 'error' %}
+                                        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                            <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                    {% endif %}
+                                        <div>{{ message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                                    
+                            {% endif %}
+                                
+
+                            {% for book in books %}
+                                <div class="book-item position-relative shadow p-3 mb-3">
+                                    <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                    <div class="book-data">
+                                        <h1>{{ book.title | upper }} 
+                                            
+                                            {% if book.stock != 0 %}
+                                                <span class="available">(Available)</span>
+                                            {% else %}
+                                                <span class="not-available">(Out of Stock)</span>
+                                            {% endif %}
+                                                
+                                        </h1>
+                                        <small>ISBN Code : {{ book.isbn }}</small>
+                                        <div class="book-button mt-2">
+                                            <a href="{% url 'edit_book' book.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-id={{ book.id }}><i class="fas fa-trash"></i></button>
+                                            <a href="{% url 'detail_book' book.id %}" class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="book-item position-relative shadow p-3 mb-3">
-                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
-                                <div class="book-data">
-                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
-                                    <small>ISBN Code : 90901909019091</small>
-                                    <div class="book-button mt-2">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-item position-relative shadow p-3 mb-3">
-                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
-                                <div class="book-data">
-                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
-                                    <small>ISBN Code : 90901909019091</small>
-                                    <div class="book-button mt-2">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-item position-relative shadow p-3 mb-3">
-                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
-                                <div class="book-data">
-                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="not-available">(Out of Stock)</span></h1>
-                                    <small>ISBN Code : 90901909019091</small>
-                                    <div class="book-button mt-2">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-item position-relative shadow p-3 mb-3">
-                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
-                                <div class="book-data">
-                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="not-available">(Out of Stock)</span></h1>
-                                    <small>ISBN Code : 90901909019091</small>
-                                    <div class="book-button mt-2">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-item position-relative shadow p-3 mb-3">
-                                <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
-                                <div class="book-data">
-                                    <h1>THIS IS THE TITLE OF THE BOOK <span class="available">(Available)</span></h1>
-                                    <small>ISBN Code : 90901909019091</small>
-                                    <div class="book-button mt-2">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                        <button class="btn btn-sm btn-info text-white"><i class="fas fa-info"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
+                                
                         </div>
                     </div>
                 </div>
@@ -135,13 +105,29 @@
                 Are you sure want to delete this data?
             </div>
             <div class="modal-footer">
-                <form action="" method="post">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-danger">Yes</button type="submit">
-                </form>
+                <div class="form"></div>
             </div>
             </div>
         </div>
     </div>
 {% endblock content %}
+
+{% block more-js %}
+    <script>
+        var modal = document.getElementById('delete')
+        modal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var book_id = button.getAttribute('data-bs-id')
+
+        modal.querySelector('.form').innerHTML = `
+                <form action="{% url 'delete_book' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="${book_id}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button type="submit">
+                </form>`
+        })
+    </script>
+{% endblock more-js %}
+    
     

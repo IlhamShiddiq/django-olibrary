@@ -5,7 +5,7 @@ from admin_user.models import *
 class FormBook(ModelForm):
     class Meta:
         model = books
-        exclude = ['id']
+        exclude = ['id', 'image']
 
         widgets = {
             'title': forms.TextInput({'class': 'form-control', 'placeholder': 'Input here...'}),
@@ -15,7 +15,7 @@ class FormBook(ModelForm):
             'writer': forms.TextInput({'class': 'form-control', 'placeholder': 'Input here...'}),
             'publisher': forms.Select({'class': 'form-select'}),
             'category': forms.Select({'class': 'form-select'}),
-            'synopsis': Textarea({'rows': 3, 'class': 'form-control', 'placeholder': 'Input here...'}),
+            'synopsis': Textarea({'rows': 5, 'class': 'form-control', 'placeholder': 'Input here...'}),
         }
 
 class FormMember(ModelForm):
@@ -27,7 +27,7 @@ class FormMember(ModelForm):
             'name': forms.TextInput({'class': 'form-control', 'placeholder': 'Input here...'}),
             'email': forms.EmailInput({'class': 'form-control', 'placeholder': 'Input here...'}),
             'phone': forms.NumberInput({'class': 'form-control', 'placeholder': 'Input here...'}),
-            'address': Textarea({'rows': 3, 'class': 'form-control', 'placeholder': 'Input here...'}),
+            'address': Textarea({'rows': 5, 'class': 'form-control', 'placeholder': 'Input here...'}),
         }
 
 class FormPublisher(ModelForm):

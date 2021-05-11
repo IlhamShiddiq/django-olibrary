@@ -44,7 +44,8 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="sub-content p-3">
                         <h5 class="mb-3">Edit Book Data</h5>
-                        <form action="" method="post">
+                        <form action="{% url 'edit_book' book.id %}" method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <label for="title" class="form-label">Title of the book</label>
