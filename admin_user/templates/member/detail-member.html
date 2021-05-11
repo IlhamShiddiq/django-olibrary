@@ -50,10 +50,10 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-7 col-lg-8">
-                                <h1 class="detail-name">Ilham Shiddiq</h1>
-                                <span class="badge bg-success rounded-pill">Phone : 082130486258</span>
-                                <span class="badge bg-primary rounded-pill">Email : shdqillham123@gmail.com</span>
-                                <p class="mt-3">Jalan Kebon Manggu, RT 01 / 20</p>
+                                <h1 class="detail-name">{{ member.name | upper }}</h1>
+                                <span class="badge bg-success rounded-pill">Phone : {{ member.phone }}</span>
+                                <span class="badge bg-primary rounded-pill">Email : {{ member.email }}</span>
+                                <p class="mt-3">{{ member.address }}</p>
                             </div>
                         </div>
                     </div>

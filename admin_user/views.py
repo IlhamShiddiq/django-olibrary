@@ -48,7 +48,7 @@ def edit_book(request, book_id):
             messages.success(request, 'Data has updated successfully')
             return redirect('book')
 
-        messages.error(request, 'Failed to edit data')
+        messages.error(request, 'Failed to update data')
         return redirect('book')
 
     form = FormBook(instance=book)
@@ -83,10 +83,26 @@ def delete_book(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 def member(request):
-    return render(request, 'member/member.html')
+    member = members.objects.all()
+
+    datas = {
+        'members': member
+    }
+
+    return render(request, 'member/member.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
 def add_member(request):
+    if request.POST:
+        data = FormMember(request.POST)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'Data has added successfully')
+            return redirect('member')
+
+        messages.error(request, 'Failed to add data')
+        return redirect('member')
+
     datas = {
         'form': FormMember(),
     }
@@ -94,16 +110,46 @@ def add_member(request):
     return render(request, 'member/add-member.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
-def edit_member(request):
+def edit_member(request, member_id):
+    member = members.objects.get(id=member_id)
+
+    if request.POST:
+        data = FormMember(request.POST, instance=member)
+        if data.is_valid():
+            data.save()
+            messages.success(request, 'Data has updated successfully')
+            return redirect('member')
+
+        messages.error(request, 'Failed to update data')
+        return redirect('member')
+
     datas = {
-        'form': FormMember(),
+        'form': FormMember(instance=member),
+        'member': member
     }
 
     return render(request, 'member/edit-member.html', datas)
 
 @login_required(login_url=settings.LOGIN_URL)
-def detail_member(request):
-    return render(request, 'member/detail-member.html')
+def detail_member(request, member_id):
+    member = members.objects.get(id=member_id)
+
+    datas = {
+        'member': member
+    }
+
+    return render(request, 'member/detail-member.html', datas)
+    
+@login_required(login_url=settings.LOGIN_URL)
+def delete_member(request):
+    if request.POST:
+        id = request.POST.get('id')
+        category = members.objects.get(id=id)
+
+        delete = members.objects.filter(id=id).delete()
+
+        messages.success(request, 'Data has deleted successfully')
+        return redirect('member')
 
 @login_required(login_url=settings.LOGIN_URL)
 def publisher(request):

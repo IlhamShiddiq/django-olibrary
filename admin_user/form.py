@@ -21,7 +21,7 @@ class FormBook(ModelForm):
 class FormMember(ModelForm):
     class Meta:
         model = members
-        exclude = ['id']
+        exclude = ['id', 'image']
 
         widgets = {
             'name': forms.TextInput({'class': 'form-control', 'placeholder': 'Input here...'}),
