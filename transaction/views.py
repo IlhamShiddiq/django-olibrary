@@ -151,11 +151,25 @@ def cancel_transaction(request):
 @login_required()
 def returning(request, transaction_id):
     message = ''
+    is_ontime = '1'
+    current_date = datetime.datetime.now().date()
+
     if request.POST:
         books = request.POST.getlist('book')
         id = request.POST.get('id')
+
+        transaction_data = transactions.objects.get(id=id)
+        interval_borrow_date = transaction_data.borrow_date + datetime.timedelta(days=14)
+
+        if interval_borrow_date < current_date:
+            is_ontime = '0'
+
         for i in range(0, len(books)):
-            update = detail_transactions.objects.filter(transaction_id=id, book_id=books[i]).update(is_returned='1')
+            update = detail_transactions.objects.filter(transaction_id=id, book_id=books[i]).update(
+                is_returned='1',
+                return_of_date=current_date,
+                is_ontime=is_ontime
+            )
             
         if len(books) == 1:
             message = 'The book is returned'
@@ -177,5 +191,11 @@ def returning(request, transaction_id):
 
 @login_required()
 def report(request):
-    return render(request, 'report/report.html')
+    report = transactions.objects.raw('SELECT t.id AS id, m.name AS name, b.title AS title, d.return_of_date AS return_date, d.is_ontime AS ontime FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="1"')
+
+    datas = {
+        'reports': report
+    }
+
+    return render(request, 'report/report.html', datas)
 

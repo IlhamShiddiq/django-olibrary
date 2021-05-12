@@ -47,22 +47,25 @@
             <div class="col-12 col-md-8 col-lg-8">
                 <div class="sub-content">
                     <div class="report-items">
-                        <div class="report-item position-relative shadow p-3 mb-3">
-                            <div class="report-data">
-                                <h1>ILHAM SHIDDIQ</h1>
-                                <p>Title : This is title of the book</p>
-                                <span class="badge bg-primary rounded-pill">Return of date : 2020-01-01</span>
-                                <span class="badge bg-success rounded-pill">On time : yes</span>
+                        
+                        {% for report in reports %}
+                            <div class="report-item position-relative shadow p-3 mb-3">
+                                <div class="report-data">
+                                    <h1>{{ report.name | upper }}</h1>
+                                    <p>Title : {{ report.title | upper }}</p>
+                                    <span class="badge bg-primary rounded-pill">Return of date : {{ report.return_date }}</span>
+                                    
+                                    
+                                    {% if report.ontime == '1' %}
+                                        <span class="badge bg-success rounded-pill">On time : Yes</span>
+                                    {% else %}
+                                        <span class="badge bg-danger rounded-pill">On time : No</span>
+                                    {% endif %}
+                                        
+                                </div>
                             </div>
-                        </div>
-                        <div class="report-item position-relative shadow p-3 mb-3">
-                            <div class="report-data">
-                                <h1>ILHAM SHIDDIQ</h1>
-                                <p>Title : This is title of the book</p>
-                                <span class="badge bg-primary rounded-pill">Return of date : 2020-01-01</span>
-                                <span class="badge bg-danger rounded-pill">On time : no</span>
-                            </div>
-                        </div>
+                        {% endfor %}
+                            
                     </div>
                 </div>
             </div>
