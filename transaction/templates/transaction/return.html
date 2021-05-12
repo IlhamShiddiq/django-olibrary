@@ -40,30 +40,29 @@
                         </div>
                     </div>
                     <label>Name of member</label>
-                    <input type="text" readonly placeholder="Name" class="form-control">
+                    <input type="text" readonly placeholder="Name" class="form-control mb-3" value={{ transaction.member }}>
                 </div>
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="sub-content">
-                        <form action="" method="post">
+                        <h5 class="mb-3">Fill the checkbox for the returned book(s)</h5>
+                        <form action="{% url 'returning' transaction.id %}" method="post">
+                            {% csrf_token %}
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" name="book">
-                                        <label class="form-check-label">
-                                            Title of the book
-                                        </label>
+                                
+                                {% for book in books %}
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value={{ book.id_b }} name="book">
+                                            <label class="form-check-label">
+                                                {{ book.title }}
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" name="book2">
-                                        <label class="form-check-label">
-                                            Title of the book 2
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary full-width">Submit</button>
+                                {% endfor %}
+                                
+                                <input type="hidden" name="id" value={{ transaction.id }}>
+                                <div class="col-12 mt-3">
+                                    <button class="btn btn-sm btn-primary full-width">Submit</button>
                                 </div>
                             </div>
                         </form>

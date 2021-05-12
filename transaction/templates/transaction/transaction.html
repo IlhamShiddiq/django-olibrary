@@ -42,14 +42,36 @@
                 </div>
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="sub-content">
-                        <div class="transaction-items">
-                            <div class="transaction-item position-relative shadow p-3 mb-3">
-                                <div class="transaction-data">
-                                    <h1>ILHAM SHIDDIQ</h1>
-                                    <p>Title : This is title of the book</p>
-                                    <a href="{% url 'returning' %}" class="btn btn-primary btn-sm"><i class="fas fa-exchange-alt"></i></a>
+
+                        {% if messages %}
+                                
+                            {% for message in messages %}
+                                {% if message.tags == 'success' %}
+                                    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#check-circle-fill"/></svg>
+                                {% elif message.tags == 'error' %}
+                                    <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                {% endif %}
+                                    <div>{{ message }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                            </div>
+                            {% endfor %}
+                                
+                        {% endif %}
+                        
+                        <div class="transaction-items">
+                            
+                            {% for transaction in transactions %}
+                                <div class="transaction-item position-relative shadow p-3 mb-3">
+                                    <div class="transaction-data">
+                                        <h1>{{ transaction.name | upper }}</h1>
+                                        <p>Book borrowed : {{ transaction.count }} book(s)</p>
+                                        <a href="{% url 'returning' transaction.id %}" class="btn btn-primary btn-sm"><i class="fas fa-exchange-alt"></i></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                                
                         </div>
                     </div>
                 </div>
@@ -66,7 +88,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="{% url 'validation' %}" method="post">
+                    {% csrf_token %}
                     <div class="row justify-content-center">
                         <div class="col-12 mb-3">
                             <input type="email" class="form-control" name="email" placeholder="Please input the member's email">

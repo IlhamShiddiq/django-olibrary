@@ -35,7 +35,10 @@ urlpatterns = [
     path('category/edit/<int:category_id>', edit_category, name="edit_category"),
     path('category/delete/', delete_category, name="delete_category"),
     path('transaction/', transaction, name="transaction"),
+    path('transaction/validation/', member_validation, name="validation"),
+    path('transaction/submit/', submit_transaction, name="submit_transaction"),
+    path('transaction/cancel/', cancel_transaction, name="cancel_transaction"),
     path('transaction/add/', add_transaction, name="add_transaction"),
-    path('transaction/return/', returning, name="returning"),
+    path('transaction/return/<int:transaction_id>', returning, name="returning"),
     path('report/', report, name="report"),
 ]
