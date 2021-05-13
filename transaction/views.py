@@ -104,14 +104,22 @@ def add_transaction(request):
                         status = 'failed'
                         sendmessage = 'Sorry, member can\'t borrow the same book'
                     else:
-                        request.session['book_regs'] += isbn + '~'
-                        status = 'success'
-                        sendmessage = 'Book has added successfully to your entry'
+                        if validation.stock == 0:
+                            status = 'failed'
+                            sendmessage = 'Sorry, this book is unavailable'
+                        else:
+                            request.session['book_regs'] += isbn + '~'
+                            status = 'success'
+                            sendmessage = 'Book has added successfully to your entry'
             except:
-                book_reg = request.session['book_regs'] = isbn + '~'
+                if validation.stock == 0:
+                    status = 'failed'
+                    sendmessage = 'Sorry, this book is unavailable'
+                else:
+                    book_reg = request.session['book_regs'] = isbn + '~'
 
-                status = 'success'
-                sendmessage = 'Book has added successfully to your entry'
+                    status = 'success'
+                    sendmessage = 'Book has added successfully to your entry'
         except books.DoesNotExist:
             status = 'failed'
             sendmessage = 'Sorry, ISBN Code is not registered in our system'
@@ -165,11 +173,11 @@ def returning(request, transaction_id):
             is_ontime = '0'
 
         for i in range(0, len(books)):
-            update = detail_transactions.objects.filter(transaction_id=id, book_id=books[i]).update(
-                is_returned='1',
-                return_of_date=current_date,
-                is_ontime=is_ontime
-            )
+            detail = detail_transactions.objects.get(transaction_id=id, book_id=books[i])
+            detail.is_returned = '1'
+            detail.return_of_date = current_date
+            detail.is_ontime = is_ontime
+            detail.save()
             
         if len(books) == 1:
             message = 'The book is returned'
