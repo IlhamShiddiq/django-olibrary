@@ -4,10 +4,60 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from admin_user.form import *
 from admin_user.models import *
+from transaction.models import *
+from django.db.models import Count
+import datetime
+
+book_count = books.objects.all().count()
+publisher_count = publishers.objects.all().count()
+category_count = categories.objects.all().count()
 
 @login_required()
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    theday = datetime.date.today()
+    weekday = theday.isoweekday()
+    dates = []
+
+    top_publisher = books.objects.all().values('publisher_id', 'publisher_id__publisher').annotate(count=Count('publisher_id')).order_by('-count')[0:3]
+    top_category = books.objects.all().values('category_id', 'category_id__category').annotate(count=Count('category_id')).order_by('-count')[0:3]
+
+    start = theday - datetime.timedelta(days=weekday)
+    date = [dates.append(start + datetime.timedelta(days=d)) for d in range(8)]
+
+    monday = transactions.objects.filter(borrow_date=dates[1]).count()
+    tuesday = transactions.objects.filter(borrow_date=dates[2]).count()
+    wednesday = transactions.objects.filter(borrow_date=dates[3]).count()
+    thursday = transactions.objects.filter(borrow_date=dates[4]).count()
+    friday = transactions.objects.filter(borrow_date=dates[5]).count()
+
+    datas = {
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
+        'top_publisher_labels': [
+            top_publisher[0]['publisher_id__publisher'],
+            top_publisher[1]['publisher_id__publisher'],
+            top_publisher[2]['publisher_id__publisher'],
+        ],
+        'top_publisher_counter': [
+            top_publisher[0]['count'],
+            top_publisher[1]['count'],
+            top_publisher[2]['count'],
+        ],
+        'top_category_labels': [
+            top_category[0]['category_id__category'],
+            top_category[1]['category_id__category'],
+            top_category[2]['category_id__category'],
+        ],
+        'top_category_counter': [
+            top_category[0]['count'],
+            top_category[1]['count'],
+            top_category[2]['count'],
+        ],
+        'transaction_counter': [monday, tuesday, wednesday, thursday, friday]
+    }
+
+    return render(request, 'dashboard.html', datas)
 
 @login_required()
 def book(request):
@@ -15,6 +65,9 @@ def book(request):
 
     datas = {
         'books': book_lists,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'book/book-datas.html', datas)
@@ -33,6 +86,9 @@ def add_book(request):
 
     datas = {          
         'form': FormBook(),
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'book/add-book.html', datas)
@@ -55,7 +111,10 @@ def edit_book(request, book_id):
 
     datas = {
         'form': form,
-        'book': book
+        'book': book,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'book/edit-book.html', datas)
@@ -65,7 +124,10 @@ def detail_book(request, book_id):
     book = books.objects.get(id=book_id)
 
     datas = {
-        'book': book
+        'book': book,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'book/detail-book.html', datas)
@@ -86,7 +148,10 @@ def member(request):
     member = members.objects.all()
 
     datas = {
-        'members': member
+        'members': member,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'member/member.html', datas)
@@ -105,6 +170,9 @@ def add_member(request):
 
     datas = {
         'form': FormMember(),
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'member/add-member.html', datas)
@@ -125,7 +193,10 @@ def edit_member(request, member_id):
 
     datas = {
         'form': FormMember(instance=member),
-        'member': member
+        'member': member,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'member/edit-member.html', datas)
@@ -135,7 +206,10 @@ def detail_member(request, member_id):
     member = members.objects.get(id=member_id)
 
     datas = {
-        'member': member
+        'member': member,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'member/detail-member.html', datas)
@@ -156,7 +230,10 @@ def publisher(request):
     publisher_lists = publishers.objects.all()
 
     datas = {
-        'publishers': publisher_lists
+        'publishers': publisher_lists,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'publisher/publisher.html', datas)
@@ -175,6 +252,9 @@ def add_publisher(request):
         
     datas = {
         'form': FormPublisher(),
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'publisher/add-publisher.html', datas)
@@ -195,7 +275,10 @@ def edit_publisher(request, publisher_id):
 
     datas = {
         'form': FormPublisher(instance=publisher),
-        'publisher': publisher
+        'publisher': publisher,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'publisher/edit-publisher.html', datas)
@@ -216,7 +299,10 @@ def category(request):
     category = categories.objects.all()
 
     datas = {
-        'categories': category
+        'categories': category,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'category/category.html', datas)
@@ -235,6 +321,9 @@ def add_category(request):
 
     datas = {
         'form': FormCategory(),
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'category/add-category.html', datas)
@@ -254,7 +343,10 @@ def edit_category(request, category_id):
 
     datas = {
         'form': FormCategory(instance=category),
-        'category': category
+        'category': category,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'category/edit-category.html', datas)

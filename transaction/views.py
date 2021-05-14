@@ -2,9 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from transaction.models import *
+from admin_user.models import *
 from django.http import HttpResponse
 from django.contrib import messages
 import datetime
+
+book_count = books.objects.all().count()
+publisher_count = publishers.objects.all().count()
+category_count = categories.objects.all().count()
 
 @login_required()
 def transaction(request):
@@ -17,7 +22,10 @@ def transaction(request):
     transaction = transactions.objects.raw('SELECT t.id, name, count(d.book_id) AS count FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="0" GROUP BY t.id')
 
     datas = {
-        'transactions': transaction
+        'transactions': transaction,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'transaction/transaction.html', datas)
@@ -140,7 +148,10 @@ def add_transaction(request):
         },
         'status': status,
         'sendmessage': sendmessage,
-        'entries': entries
+        'entries': entries,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'transaction/add-transaction.html', datas)
@@ -192,7 +203,10 @@ def returning(request, transaction_id):
 
     datas = {
         'transaction': transaction_data,
-        'books': books
+        'books': books,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'transaction/return.html', datas)
@@ -202,7 +216,10 @@ def report(request):
     report = transactions.objects.raw('SELECT t.id AS id, m.name AS name, b.title AS title, d.return_of_date AS return_date, d.is_ontime AS ontime FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="1"')
 
     datas = {
-        'reports': report
+        'reports': report,
+        'book_count': book_count,
+        'publisher_count': publisher_count,
+        'category_count': category_count,
     }
 
     return render(request, 'report/report.html', datas)

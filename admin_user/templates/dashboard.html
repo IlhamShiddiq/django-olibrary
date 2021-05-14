@@ -24,17 +24,17 @@
                         <div class="row">
                             <div class="col-4 text-center text-white mt-4">
                                 <small>Book</small>
-                                <h1 class="mb-3">78</h1>
+                                <h1 class="mb-3">{{ book_count }}</h1>
                                 <i class="fas fa-book"></i>
                             </div>
                             <div class="col-4 text-center text-white mt-4 border border-top-0 border-bottom-0">
                                 <small>Publisher</small>
-                                <h1 class="mb-3">78</h1>
+                                <h1 class="mb-3">{{ publisher_count }}</h1>
                                 <i class="fas fa-upload"></i>
                             </div>
                             <div class="col-4 text-center text-white mt-4">
                                 <small>Category</small>
-                                <h1 class="mb-3">78</h1>
+                                <h1 class="mb-3">{{ category_count }}</h1>
                                 <i class="fas fa-bookmark"></i>
                             </div>
                         </div>
@@ -68,10 +68,17 @@
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Red', 'Blue', 'Yellow'],
+                labels: [
+                    {% for i in top_publisher_labels %}
+                        '{{ i }}',
+                    {% endfor %}
+                ],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3],
+                    data: [
+                        {% for i in top_publisher_counter %}
+                            {{ i }},
+                        {% endfor %}
+                    ],
                     backgroundColor: [
                         'rgb(61, 56, 105)',
                         'rgb(118, 109, 185)',
@@ -110,10 +117,17 @@
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Red', 'Blue', 'Yellow'],
+                labels: [
+                    {% for i in top_category_labels %}
+                        '{{ i }}',
+                    {% endfor %}
+                ],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3],
+                    data: [
+                        {% for i in top_category_counter %}
+                            {{ i }},
+                        {% endfor %}
+                    ],
                     backgroundColor: [
                         'rgb(61, 56, 105)',
                         'rgb(118, 109, 185)',
@@ -154,8 +168,11 @@
             data: {
                 labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 1, 9],
+                    data: [
+                        {% for i in transaction_counter %}
+                            {{ i }},
+                        {% endfor %}
+                    ],
                     backgroundColor: [
                         'rgb(61, 56, 105)',
                         'rgb(118, 109, 185)',
