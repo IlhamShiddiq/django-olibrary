@@ -5,6 +5,7 @@ from transaction.models import *
 from admin_user.models import *
 from django.http import HttpResponse
 from django.contrib import messages
+from django.core.paginator import Paginator
 import datetime
 
 book_count = books.objects.all().count()
@@ -19,10 +20,14 @@ def transaction(request):
     except:
         a = 'nothing'
 
-    transaction = transactions.objects.raw('SELECT t.id, name, count(d.book_id) AS count FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="0" GROUP BY t.id')
+    transaction_datas = transactions.objects.raw('SELECT t.id, name, count(d.book_id) AS count FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="0" GROUP BY t.id')
+    paginator = Paginator(transaction_datas, 5)
+
+    page_number = request.GET.get('page')
+    transaction_paginate = paginator.get_page(page_number)
 
     datas = {
-        'transactions': transaction,
+        'transactions': transaction_paginate,
         'book_count': book_count,
         'publisher_count': publisher_count,
         'category_count': category_count,
@@ -214,9 +219,13 @@ def returning(request, transaction_id):
 @login_required()
 def report(request):
     report = transactions.objects.raw('SELECT t.id AS id, m.name AS name, b.title AS title, d.return_of_date AS return_date, d.is_ontime AS ontime FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="1"')
+    paginator = Paginator(report, 5)
+
+    page_number = request.GET.get('page')
+    report_paginate = paginator.get_page(page_number)
 
     datas = {
-        'reports': report,
+        'reports': report_paginate,
         'book_count': book_count,
         'publisher_count': publisher_count,
         'category_count': category_count,

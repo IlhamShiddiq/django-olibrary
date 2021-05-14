@@ -70,8 +70,26 @@
                                         <a href="{% url 'returning' transaction.id %}" class="btn btn-primary btn-sm"><i class="fas fa-exchange-alt"></i></a>
                                     </div>
                                 </div>
-                            {% endfor %}
-                                
+                            {% endfor %}  
+                            
+                            <div class="my-4"></div>
+                            <div class="pagination justify-content-end">
+                                <span class="step-links">
+                                    {% if transactions.has_previous %}
+                                        <a href="?page=1" class="btn btn-sm btn-success">First</a>
+                                        <a href="?page={{ transactions.previous_page_number }}" class="btn btn-sm btn-success"><i class="fas fa-chevron-left"></i></a>
+                                    {% endif %}
+
+                                    <small class="current mx-1">
+                                        Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}
+                                    </small>
+
+                                    {% if transactions.has_next %}
+                                        <a href="?page={{ transactions.next_page_number }}" class="btn btn-sm btn-success"><i class="fas fa-chevron-right"></i></a>
+                                        <a href="?page={{ transactions.paginator.num_pages }}" class="btn btn-sm btn-success">Last</a>
+                                    {% endif %}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

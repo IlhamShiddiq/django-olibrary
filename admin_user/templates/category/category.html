@@ -79,10 +79,28 @@
                                             <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-id={{ category.id }}><i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
-                                {% endfor %}
-                                    
+                                {% endfor %}  
                             </tbody>
                         </table>
+
+                        <div class="my-4"></div>
+                        <div class="pagination justify-content-end">
+                            <span class="step-links">
+                                {% if categories.has_previous %}
+                                    <a href="?page=1" class="btn btn-sm btn-success">First</a>
+                                    <a href="?page={{ categories.previous_page_number }}" class="btn btn-sm btn-success"><i class="fas fa-chevron-left"></i></a>
+                                {% endif %}
+
+                                <small class="current mx-1">
+                                    Page {{ categories.number }} of {{ categories.paginator.num_pages }}
+                                </small>
+
+                                {% if categories.has_next %}
+                                    <a href="?page={{ categories.next_page_number }}" class="btn btn-sm btn-success"><i class="fas fa-chevron-right"></i></a>
+                                    <a href="?page={{ categories.paginator.num_pages }}" class="btn btn-sm btn-success">Last</a>
+                                {% endif %}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ from admin_user.form import *
 from admin_user.models import *
 from transaction.models import *
 from django.db.models import Count
+from django.core.paginator import Paginator
 import datetime
 
 book_count = books.objects.all().count()
@@ -61,7 +62,10 @@ def dashboard(request):
 
 @login_required()
 def book(request):
-    book_lists = books.objects.all()
+    paginator = Paginator(books.objects.all(), 5)
+
+    page_number = request.GET.get('page')
+    book_lists = paginator.get_page(page_number)
 
     datas = {
         'books': book_lists,
@@ -145,7 +149,10 @@ def delete_book(request):
 
 @login_required()
 def member(request):
-    member = members.objects.all()
+    paginator = Paginator(members.objects.all(), 5)
+
+    page_number = request.GET.get('page')
+    member = paginator.get_page(page_number)
 
     datas = {
         'members': member,
@@ -227,7 +234,10 @@ def delete_member(request):
 
 @login_required()
 def publisher(request):
-    publisher_lists = publishers.objects.all()
+    paginator = Paginator(publishers.objects.all(), 10)
+    
+    page_number = request.GET.get('page')
+    publisher_lists = paginator.get_page(page_number)
 
     datas = {
         'publishers': publisher_lists,
@@ -296,7 +306,10 @@ def delete_publisher(request):
 
 @login_required()
 def category(request):
-    category = categories.objects.all()
+    paginator = Paginator(categories.objects.all(), 10)
+
+    page_number = request.GET.get('page')
+    category = paginator.get_page(page_number)
 
     datas = {
         'categories': category,
