@@ -9,12 +9,11 @@ from django.db.models import Count
 from django.core.paginator import Paginator
 import datetime
 
-book_count = books.objects.all().count()
-publisher_count = publishers.objects.all().count()
-category_count = categories.objects.all().count()
-
 @login_required()
 def dashboard(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     theday = datetime.date.today()
     weekday = theday.isoweekday()
     dates = []
@@ -62,6 +61,9 @@ def dashboard(request):
 
 @login_required()
 def book(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     paginator = Paginator(books.objects.all(), 5)
 
     page_number = request.GET.get('page')
@@ -78,6 +80,10 @@ def book(request):
 
 @login_required()
 def add_book(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
+
     if request.POST:
         data = FormBook(request.POST)
         if data.is_valid():
@@ -99,6 +105,9 @@ def add_book(request):
 
 @login_required()
 def edit_book(request, book_id):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     book = books.objects.get(id=book_id)
 
     if request.POST:
@@ -125,6 +134,9 @@ def edit_book(request, book_id):
 
 @login_required()
 def detail_book(request, book_id):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     book = books.objects.get(id=book_id)
 
     datas = {
@@ -149,6 +161,9 @@ def delete_book(request):
 
 @login_required()
 def member(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     paginator = Paginator(members.objects.all(), 5)
 
     page_number = request.GET.get('page')
@@ -165,6 +180,10 @@ def member(request):
 
 @login_required()
 def add_member(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
+
     if request.POST:
         data = FormMember(request.POST)
         if data.is_valid():
@@ -186,6 +205,9 @@ def add_member(request):
 
 @login_required()
 def edit_member(request, member_id):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     member = members.objects.get(id=member_id)
 
     if request.POST:
@@ -210,6 +232,9 @@ def edit_member(request, member_id):
 
 @login_required()
 def detail_member(request, member_id):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     member = members.objects.get(id=member_id)
 
     datas = {
@@ -234,6 +259,9 @@ def delete_member(request):
 
 @login_required()
 def publisher(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     paginator = Paginator(publishers.objects.all(), 10)
     
     page_number = request.GET.get('page')
@@ -250,6 +278,10 @@ def publisher(request):
 
 @login_required()
 def add_publisher(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
+
     if request.POST:
         data = FormPublisher(request.POST)
         if data.is_valid():
@@ -271,6 +303,9 @@ def add_publisher(request):
 
 @login_required()
 def edit_publisher(request, publisher_id):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     publisher = publishers.objects.get(id=publisher_id)
 
     if request.POST:
@@ -306,6 +341,9 @@ def delete_publisher(request):
 
 @login_required()
 def category(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     paginator = Paginator(categories.objects.all(), 10)
 
     page_number = request.GET.get('page')
@@ -322,6 +360,10 @@ def category(request):
 
 @login_required()
 def add_category(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
+
     if request.POST:
         data = FormCategory(request.POST)
         if data.is_valid():
@@ -343,7 +385,11 @@ def add_category(request):
 
 @login_required()
 def edit_category(request, category_id):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     category = categories.objects.get(id=category_id)
+    
     if request.POST:
         data = FormCategory(request.POST, instance=category)
         if data.is_valid():

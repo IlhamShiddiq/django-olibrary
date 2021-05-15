@@ -8,10 +8,6 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 import datetime
 
-book_count = books.objects.all().count()
-publisher_count = publishers.objects.all().count()
-category_count = categories.objects.all().count()
-
 @login_required()
 def transaction(request):
     try:
@@ -20,6 +16,9 @@ def transaction(request):
     except:
         a = 'nothing'
 
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     transaction_datas = transactions.objects.raw('SELECT t.id, name, count(d.book_id) AS count FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="0" GROUP BY t.id')
     paginator = Paginator(transaction_datas, 5)
 
@@ -88,6 +87,9 @@ def submit_transaction(request):
 
 @login_required()
 def add_transaction(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     data = request.session.get('member_datas')
 
     if data == None:
@@ -177,6 +179,9 @@ def returning(request, transaction_id):
     message = ''
     is_ontime = '1'
     current_date = datetime.datetime.now().date()
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
 
     if request.POST:
         books = request.POST.getlist('book')
@@ -218,6 +223,9 @@ def returning(request, transaction_id):
 
 @login_required()
 def report(request):
+    book_count = books.objects.all().count()
+    publisher_count = publishers.objects.all().count()
+    category_count = categories.objects.all().count()
     report = transactions.objects.raw('SELECT t.id AS id, m.name AS name, b.title AS title, d.return_of_date AS return_date, d.is_ontime AS ontime FROM transaction_transactions t, transaction_detail_transactions d, admin_user_books b, admin_user_members m WHERE t.id=d.transaction_id AND d.book_id = b.id AND t.member_id=m.id and d.is_returned="1"')
     paginator = Paginator(report, 5)
 
