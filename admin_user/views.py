@@ -8,6 +8,7 @@ from transaction.models import *
 from django.db.models import Count
 from django.core.paginator import Paginator
 import datetime
+import os
 
 @login_required()
 def dashboard(request):
@@ -85,9 +86,11 @@ def add_book(request):
     category_count = categories.objects.all().count()
 
     if request.POST:
-        data = FormBook(request.POST)
+        isbn = request.POST.get('isbn')
+        data = FormBook(request.POST, request.FILES)
         if data.is_valid():
             data.save()
+
             messages.success(request, 'Data has added successfully')
             return redirect('book')
 
@@ -111,7 +114,7 @@ def edit_book(request, book_id):
     book = books.objects.get(id=book_id)
 
     if request.POST:
-        data = FormBook(request.POST, instance=book)
+        data = FormBook(request.POST, request.FILES, instance=book)
         if data.is_valid():
             data.save()
             messages.success(request, 'Data has updated successfully')

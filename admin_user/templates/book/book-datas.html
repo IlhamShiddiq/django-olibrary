@@ -65,7 +65,7 @@
 
                             {% for book in books %}
                                 <div class="book-item position-relative shadow p-3 mb-3">
-                                    <div class="book-image position-absolute"><img src="{% static 'app/img/book-default.png' %}" alt="Book Image" class="full-width"></div>
+                                    <div class="book-image position-absolute"><img src="{{ book.image.url }}" alt="Book Image" class="full-width"></div>
                                     <div class="book-data">
                                         <h1>{{ book.title | upper }} 
                                             

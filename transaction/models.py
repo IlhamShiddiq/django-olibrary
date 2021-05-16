@@ -5,10 +5,16 @@ from django.dispatch import receiver
 from django.db.models import F
 
 class transactions(models.Model):
+    class Meta:
+        ordering = ['id']
+
     member = models.ForeignKey(members, on_delete=models.CASCADE)
     borrow_date = models.DateField()
 
 class detail_transactions(models.Model):
+    class Meta:
+        ordering = ['id']
+        
     transaction = models.ForeignKey(transactions, on_delete=models.CASCADE)
     book = models.ForeignKey(books, on_delete=models.CASCADE)
     is_returned = models.CharField(max_length=1)

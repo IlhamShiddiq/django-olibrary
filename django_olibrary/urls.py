@@ -42,3 +42,6 @@ urlpatterns = [
     path('transaction/return/<int:transaction_id>', returning, name="returning"),
     path('report/', report, name="report"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,11 +1,11 @@
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, Textarea, FileInput
 from django import forms
 from admin_user.models import *
 
 class FormBook(ModelForm):
     class Meta:
         model = books
-        exclude = ['id', 'image']
+        exclude = ['id']
 
         widgets = {
             'title': forms.TextInput({'class': 'form-control', 'placeholder': 'Input here...'}),
@@ -16,6 +16,7 @@ class FormBook(ModelForm):
             'publisher': forms.Select({'class': 'form-select'}),
             'category': forms.Select({'class': 'form-select'}),
             'synopsis': Textarea({'rows': 5, 'class': 'form-control', 'placeholder': 'Input here...'}),
+            'image': FileInput({'class': 'form-control', 'onchange': "a()"}),
         }
 
 class FormMember(ModelForm):

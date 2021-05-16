@@ -40,11 +40,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="cover p-2">
+                        <h6 class="text-center">Book Cover</h6>
+                        <img src="{{ book.image.url }}" alt="" id="cover" class="full-width">
+                    </div>
                 </div>
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="sub-content p-3">
                         <h5 class="mb-3">Edit Book Data</h5>
-                        <form action="{% url 'edit_book' book.id %}" method="post">
+                        <form action="{% url 'edit_book' book.id %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-12 mb-3">
@@ -79,6 +83,10 @@
                                     <label for="synopsis" class="form-label">Synopsis</label>
                                     {{ form.synopsis }}
                                 </div>
+                                <div class="col-12 mb-3">
+                                    <label for="formFile" class="form-label">Default file input example</label>
+                                    {{ form.image }}
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success full-width">Edit</button>
                         </form>
@@ -88,4 +96,12 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block more-js %}
+    <script>
+        const a = () => {
+            document.getElementById('cover').src = window.URL.createObjectURL(document.getElementById('id_image').files[0])
+        }
+    </script>
+{% endblock more-js %}
     
