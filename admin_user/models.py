@@ -23,14 +23,13 @@ class categories(models.Model):
         return self.category
 
 def user_directory_path(instance, filename):
-  
-    # file will be uploaded to MEDIA_ROOT / user_<id>/<filename>
     return 'book-cover/{0}/{1}'.format(instance.isbn, filename)
 
 class books(models.Model):
     class Meta:
         ordering = ['id']
         
+    # unique_key = models.AutoField(primary_key=True)
     isbn = models.CharField(max_length=20, unique=True)
     title = models.CharField(max_length=100)
     publish_year = models.IntegerField()
@@ -46,8 +45,8 @@ class books(models.Model):
 
 @receiver(post_delete, sender=books)
 def delete_dir_image(sender, instance, *args, **kwargs):
-    instance.image.delete(save=False)
     if instance.image != 'book-cover/book-default.png':
+        instance.image.delete(save=False)
         os.rmdir(os.path.join(settings.MEDIA_URL_BOOK, instance.isbn))
 
 @receiver(pre_save, sender=books)
@@ -73,7 +72,6 @@ class members(models.Model):
     email = models.CharField(max_length=100, unique=True)
     phone = models.CharField(max_length=15)
     address = models.TextField()
-    image = models.ImageField(upload_to='cover/', null=True)
 
     def __str__(self):
         return self.name
