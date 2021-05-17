@@ -14,7 +14,7 @@ SECRET_KEY = '_lx=(+9_+^ybwk^%^3i6y@(da&ww*mgu^%3lsi(17r#x%met3f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-olibrary.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

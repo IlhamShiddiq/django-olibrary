@@ -184,7 +184,7 @@ def returning(request, transaction_id):
     category_count = categories.objects.all().count()
 
     if request.POST:
-        books = request.POST.getlist('book')
+        book_lists = request.POST.getlist('book')
         id = request.POST.get('id')
 
         transaction_data = transactions.objects.get(id=id)
@@ -193,14 +193,14 @@ def returning(request, transaction_id):
         if interval_borrow_date < current_date:
             is_ontime = '0'
 
-        for i in range(0, len(books)):
-            detail = detail_transactions.objects.get(transaction_id=id, book_id=books[i])
+        for i in range(0, len(book_lists)):
+            detail = detail_transactions.objects.get(transaction_id=id, book_id=book_lists[i])
             detail.is_returned = '1'
             detail.return_of_date = current_date
             detail.is_ontime = is_ontime
             detail.save()
             
-        if len(books) == 1:
+        if len(book_lists) == 1:
             message = 'The book is returned'
         else :
             message = 'The books are returned'
@@ -209,11 +209,11 @@ def returning(request, transaction_id):
         return redirect('transaction')
 
     transaction_data = transactions.objects.get(id=transaction_id)
-    books = detail_transactions.objects.raw('SELECT d.id AS id, b.id AS id_b, b.title AS title FROM transaction_detail_transactions d, admin_user_books b WHERE d.book_id=b.id AND d.transaction_id='+str(transaction_id)+' AND d.is_returned="0"')
+    book_datas = detail_transactions.objects.raw('SELECT d.id AS id, b.id AS id_b, b.title AS title FROM transaction_detail_transactions d, admin_user_books b WHERE d.book_id=b.id AND d.transaction_id='+str(transaction_id)+' AND d.is_returned="0"')
 
     datas = {
         'transaction': transaction_data,
-        'books': books,
+        'books': book_datas,
         'book_count': book_count,
         'publisher_count': publisher_count,
         'category_count': category_count,
